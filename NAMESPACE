@@ -1,0 +1,13 @@
+export(doBC, evaluateDuplos, evaluatePCA, evaluateCorrection)
+
+importFrom(MASS, rlm)
+importFrom(fpc, bhattacharyya.dist)
+importFrom(RColorBrewer, brewer.pal)
+importFrom(ChemometricsWithR, PCA, scoreplot.PCA, scores.PCA)
+importFrom(AER, tobit)
+importFrom(survival, survreg, Surv)
+
+## Import from default packages
+importFrom(graphics, abline, axTicks, axis,
+           legend, lines, par, plot, points, text, title) 
+importFrom(stats, aggregate, dist, quantile, rnorm)

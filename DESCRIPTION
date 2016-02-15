@@ -1,0 +1,14 @@
+Package: BatchCorrMetabolomics
+Type: Package
+Title: Complementary package to "Improved Batch Correction in
+        Untargeted MS-Based Metabolomics"
+Version: 0.1.5
+Date: 2016-01-25
+Author: Ron Wehrens [aut, cre] (author), Roland Mumm [ctb], Joost Keurentjes [ctb], Ric. de Vos [ctb] (contribution of data sets)
+Maintainer: Ron Wehrens <ron.wehrens@gmail.com>
+Description: Batch effects are generally unavoidable in untargeted metabolomics data. This package illustrates the methods described in the paper "Improved Batch Correction in Untargeted MS-Based Metabolomics" by Wehrens et al.; also the (anonymized) data are provided. Note that this version of the package primarily is provided for illustration purposes, and is not intended for use in a research setting.
+Imports: ChemometricsWithR, fpc, RColorBrewer, MASS, AER, survival
+License: GPL (>= 2)
+NeedsCompilation: no
+Packaged: 2016-01-26 09:04:45 UTC; ron
+Depends: R (>= 2.10)
