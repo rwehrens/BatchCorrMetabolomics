@@ -1,7 +1,7 @@
 # BatchCorrMetabolomics
 Supplementary material for the paper "Improved batch correction in
-untargeted MS-based metabolomics" by R. Wehrens, et al. To appear in
-Metabolomics, 2016.
+untargeted MS-based metabolomics" by R. Wehrens, et al. Metabolomics,
+12:1-12 (2016).
 
 Installing this package: in R, type the following
 
@@ -14,5 +14,5 @@ by typing:
 
 library(BatchCorrMetabolomics)
 
-demo("BC")
+demo(BC)
 
