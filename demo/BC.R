@@ -86,20 +86,20 @@ w <- c('C0', 'C1', 'C2')
 
 ## RUVs gives a warning if a matrix contains negative numbers - it
 ## then assumes the matrix is already log-scaled. This is indeed the
-## case here, so we suppress the warnings.
-suppressWarnings(RUVresults <- 
-                   lapply(w,
-                          function(woppa) {
-                            XimpRUV <- t(RUVs(t(get(woppa)),
-                                              1:nColumns,
-                                              k = 3,
-                                              replicates.ind,
-                                              round = FALSE)$normalizedCounts)
-                            ## remove imputed values
-                            XimpRUV[is.na(set.1)] <- NA
-                            
-                            log(XimpRUV)
-                          }))
+## case here, so we suppress the warnings. Scaling with RUV leads to 
+RUVresults <- 
+  lapply(w,
+         function(woppa) {
+           XimpRUV <- t(RUVs(t(get(woppa)),
+                             1:nColumns,
+                             k = 3,
+                             replicates.ind,
+                             round = FALSE,
+                             isLog = TRUE)$normalizedCounts)
+           ## remove imputed values
+           XimpRUV[is.na(set.1)] <- NA
+           
+           XimpRUV})
 names(RUVresults) <- paste("R", 0:2, sep = "")
 allResults <- c(allResults, RUVresults)
 
@@ -167,17 +167,16 @@ nColumns <- ncol(C2)
 w <- c('C0', 'C1', 'C2')
 nw <- length(w)
 
-suppressWarnings(GCRUVresults <-
-                   lapply(w,
-                          function(woppa) {
-                            XimpRUV <- t(RUVs(t(get(woppa)),
-                                              1:nColumns,
-                                              k = 3,
-                                              replicates.ind,
-                                              round = FALSE)$normalizedCounts)
-                            XimpRUV[is.na(set.2)] <- NA
-                            log(XimpRUV)
-                          }))
+GCRUVresults <-
+  lapply(w,
+         function(woppa) {
+           XimpRUV <- t(RUVs(t(get(woppa)),
+                             1:nColumns,
+                             k = 3,
+                             replicates.ind,
+                             round = FALSE, isLog = TRUE)$normalizedCounts)
+           XimpRUV[is.na(set.2)] <- NA
+           XimpRUV})
 
 names(GCRUVresults) <- paste("R", 0:2, sep = "")
 
@@ -231,19 +230,19 @@ replicates.ind <- matrix(-1, nrow(set.3) - length(idx) + 1, length(idx))
 replicates.ind[1,] <- idx
 replicates.ind[-1,1] <- (1:nrow(set.3))[-idx]
 
-suppressWarnings(allResultsRUV <-
-                   lapply(0:2,
-                          function(ImpVal) {
-                            huhn <- set.3
-                            huhn[is.na(huhn)] <- ImpVal * set.3.lod / 2
-                            woppa <- t(RUVs(t(huhn),
-                                            1:ncol(huhn),
-                                            k = 3,
-                                            replicates.ind,
-                                            round = FALSE)$normalizedCounts)
-                            woppa[is.na(set.3)] <- NA
-                            log(woppa)
-                          }))
+allResultsRUV <-
+  lapply(0:2,
+         function(ImpVal) {
+           huhn <- set.3
+           huhn[is.na(huhn)] <- ImpVal * set.3.lod / 2
+           woppa <- t(RUVs(t(huhn),
+                           1:ncol(huhn),
+                           k = 3,
+                           replicates.ind,
+                           round = FALSE, isLog = TRUE)$normalizedCounts)
+           woppa[is.na(set.3)] <- NA
+           woppa
+         })
   
 
 

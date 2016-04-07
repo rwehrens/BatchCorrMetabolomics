@@ -14,5 +14,5 @@ by typing:
 
 library(BatchCorrMetabolomics)
 
-demo(BC)
+demo(BC, echo = FALSE)
 
