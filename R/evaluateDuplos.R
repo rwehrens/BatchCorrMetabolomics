@@ -1,39 +1,16 @@
-evaluateDuplos <-
-function(X, Y, 
+evaluateDuplos <- function(X, Y, 
                            plot = !perMetabolite, ## scaleX = TRUE,
                            perMetabolite = TRUE, ...) {
   nbatches <- nlevels(Y$Batch)
   
   Xsample <- X[Y$SCode != "ref",]
   Ysample <- Y[Y$SCode != "ref",]
-  
-  ## if (scaleX)
-  ##   X <- scale(Xsample,
-  ##              center = colMeans(Xsample, na.rm = TRUE),
-  ##              scale = apply(Xsample, 2, sd, na.rm = TRUE))
-
-  ## calcRep <- function(x, label) {
-  ##   ivar <- aggregate(x, list(label), var, na.rm = TRUE)$x
-  ##   count <- aggregate(x, list(label), length)$x - 1
-  ##   if (all(is.na(ivar))) return(NA)
-  ##   if (max(count) < 2) return(NA)
-  ##   withinVar <- sum(ivar * count, na.rm = TRUE) / sum(count)
-    
-  ##   betweenVar <- var(aggregate(x, list(label), mean, na.rm = TRUE)$x)
-
-  ##   betweenVar / (betweenVar + withinVar)
-  ## }
-  ## repeatability <- 
-  ##   sapply(1:ncol(Xsample),
-  ##          function(ii)
-  ##          calcRep(Xsample[,ii], Ysample$SCode))
-
 
   repMats <- by(Xsample, list(factor(Ysample$SCode)), I)
-  short.idx <- which(sapply(repMats, nrow) < 2)
+  long.idx <- which(sapply(repMats, nrow) >= 2)
 
   ## between-replicate variability
-  cMeans <- sapply(repMats[-short.idx], colMeans, na.rm = TRUE)
+  cMeans <- sapply(repMats[long.idx], colMeans, na.rm = TRUE)
   cMeans[!is.finite(cMeans)] <- NA
   bVars <- apply(cMeans, 1, var, na.rm = TRUE)
 
