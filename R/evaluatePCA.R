@@ -11,8 +11,9 @@ evaluatePCA <- function(X, Y,
     batch.colors <- getPalette(nbatches)
   }
 
-  Xsample <- X[Y$SCode != "ref",]
-  YSample <- Y[Y$SCode != "ref",]
+  noref.idx <- which(Y$SCode != "ref")
+  Xsample <- X[noref.idx,]
+  YSample <- Y[noref.idx,]
   
   Xsample <- Xsample[, apply(Xsample, 2, function(x) !all(is.na(x)))]
   Xsample <- Xsample[, apply(Xsample, 2, sd, na.rm = TRUE) > 0]
@@ -25,8 +26,8 @@ evaluatePCA <- function(X, Y,
   
   if (plot) {
     scoreplot.PCA(X.PCA,
-                  col = batch.colors[as.integer(Y$Batch)],
-                  pch = as.integer(Y$Batch), ...)
+                  col = batch.colors[as.integer(Y$Batch)[noref.idx] ],
+                  pch = as.integer(Y$Batch)[noref.idx], ...)
     legend(legend.loc, legend = levels(Y$Batch),
            col = batch.colors, pch = 1:nbatches, ncol = legend.col)
   }
