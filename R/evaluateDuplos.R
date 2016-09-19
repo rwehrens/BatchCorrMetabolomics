@@ -1,20 +1,16 @@
 evaluateDuplos <- function(X, Y, 
-                           plot = !perMetabolite,
+                           plot = !perMetabolite, ## scaleX = TRUE,
                            perMetabolite = TRUE, ...) {
   nbatches <- nlevels(Y$Batch)
   
   Xsample <- X[Y$SCode != "ref",]
   Ysample <- Y[Y$SCode != "ref",]
-  
+
   repMats <- by(Xsample, list(factor(Ysample$SCode)), I)
-  short.idx <- which(sapply(repMats, nrow) < 2)
-  
+  long.idx <- which(sapply(repMats, nrow) >= 2)
+
   ## between-replicate variability
-  if (length(short.idx) == 0) {
-    cMeans <- sapply(repMats, colMeans, na.rm = TRUE)
-  } else {
-    cMeans <- sapply(repMats[-short.idx], colMeans, na.rm = TRUE)
-  }
+  cMeans <- sapply(repMats[long.idx], colMeans, na.rm = TRUE)
   cMeans[!is.finite(cMeans)] <- NA
   bVars <- apply(cMeans, 1, var, na.rm = TRUE)
   
