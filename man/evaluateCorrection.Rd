@@ -27,6 +27,22 @@ evaluateCorrection(X, Y, what = c("duplo", "PCA"), ...)
 \seealso{
   \code{\link{evaluateDuplos}}, \code{\link{evaluatePCA}}
 }
+\references{
+  @Article{Wehrens2016,
+  author =	 {Ron Wehrens and Jos.~A.~Hageman and Fred~van~Eeuwijk
+                  and Rik~Kooke and P\'adraic~J.~Flood and Erik
+                  Wijnker and Joost~J.B.~Keurentjes and Arjen~Lommen
+                  and Henri\"ette~D.L.M.~van~Eekelen and
+                  Robert~D.~Hall and Roland~Mumm and Ric~C.H.~de~Vos},
+  title =	 {Improved batch correction in untargeted MS-based
+                  metabolomics},
+  journal =	 {Metabolomics},
+  year =	 2016,
+  volume =	 12,
+  DOI =		 {10.1007/s11306-016-1015-8},
+  pages =	 {1--12}
+
+  }
 \examples{
 data(BC)
 set.1.lod <- min(set.1[!is.na(set.1)])
