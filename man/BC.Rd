@@ -33,7 +33,7 @@
   thaliana accessions. Number of metabolites: 75.
 }
 \references{
-  @Article{Wehrens2016,
+  "@Article{Wehrens2016,
   author =	 {Ron Wehrens and Jos.~A.~Hageman and Fred~van~Eeuwijk
                   and Rik~Kooke and P\'adraic~J.~Flood and Erik
                   Wijnker and Joost~J.B.~Keurentjes and Arjen~Lommen
@@ -46,8 +46,8 @@
   volume =	 12,
   DOI =		 {10.1007/s11306-016-1015-8},
   pages =	 {1--12}
-
-  }
+}"
+}
 \examples{
 data(BC)
 dim(set.1)

@@ -19,7 +19,7 @@
   simultaneously is available through \code{evaluateCorrection}.
 }
 \references{
-  @Article{Wehrens2016,
+  "@Article{Wehrens2016,
   author =	 {Ron Wehrens and Jos.~A.~Hageman and Fred~van~Eeuwijk
                   and Rik~Kooke and P\'adraic~J.~Flood and Erik
                   Wijnker and Joost~J.B.~Keurentjes and Arjen~Lommen
@@ -33,7 +33,8 @@
   DOI =		 {10.1007/s11306-016-1015-8},
   pages =	 {1--12}
 
-  }
+}"
+}
 \author{
   \packageAuthor{BatchCorrMetabolomics}
   
