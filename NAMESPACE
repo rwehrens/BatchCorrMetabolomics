@@ -4,10 +4,12 @@ importFrom(MASS, rlm)
 importFrom(fpc, bhattacharyya.dist)
 importFrom(RColorBrewer, brewer.pal)
 importFrom(ChemometricsWithR, PCA, scoreplot.PCA, scores.PCA)
-importFrom(AER, tobit)
-importFrom(survival, survreg, Surv)
+importFrom(crch, crch)
+## importFrom(survival, survreg, Surv)
 
 ## Import from default packages
-importFrom(graphics, abline, axTicks, axis,
+importFrom(graphics, abline, axTicks, axis, hist,
            legend, lines, par, plot, points, text, title) 
-importFrom(stats, aggregate, dist, quantile, rnorm)
+importFrom(stats, aggregate, dist, quantile, rnorm, coef, cov,
+           formula, lm, predict, sd, var)
+importFrom(grDevices, colorRampPalette)

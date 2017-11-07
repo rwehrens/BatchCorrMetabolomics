@@ -63,10 +63,12 @@ doBC <- function(Xvec, ref.idx, batch.idx, seq.idx,
     
     Bmods2 <- switch(method,
                      lm = lm(correctionFormula, data = fitdf),
-                     rlm = MASS:::rlm(correctionFormula, data = fitdf,
-                                      maxit = 50),
-                     tobit = AER:::tobit(correctionFormula, data = fitdf,
-                             left = imputeVal))
+                     rlm = MASS::rlm(correctionFormula, data = fitdf,
+                                     maxit = 50),
+###                     tobit = AER:::tobit(correctionFormula, data = fitdf,
+###                                         left = imputeVal),
+                     tobit = crch::crch(correctionFormula, data = fitdf,
+                                        left = imputeVal))
 
     ## Now make predictions for each sample, not just the ref samples
     ## The actual correction is the following:

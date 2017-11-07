@@ -1,0 +1,10 @@
+The BatchCorrMetabolomics package is used in 
+R. Wehrens et al., Metabolomics 12, 1-12, 2016.
+
+Changes in version 0.1.11:
+  - added this NEWS file
+  - using chcr from the package with the same name for tobit
+    regression, which does not rely on survival and AER, has more options and
+    is faster. Results are virtually the same.
+  - fixed a couple of minor issues so that the package now passes R
+    CMD check (mostly NAMESPACE-related)
