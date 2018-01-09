@@ -16,12 +16,13 @@ evaluatePCA <- function(X, Y,
   YSample <- Y[noref.idx,]
   
   Xsample <- Xsample[, apply(Xsample, 2, function(x) !all(is.na(x)))]
-  Xsample <- Xsample[, apply(Xsample, 2, sd, na.rm = TRUE) > 0]
   
   ## replace NA values with column means
   for (i in 1:ncol(Xsample))
     Xsample[is.na(Xsample[,i]),i] <- mean(Xsample[,i], na.rm = TRUE)
-  
+
+  Xsample <- Xsample[, apply(Xsample, 2, sd, na.rm = TRUE) > 0]
+
   X.PCA <- PCA(scale(Xsample))
   
   if (plot) {

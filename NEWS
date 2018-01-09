@@ -1,6 +1,13 @@
 The BatchCorrMetabolomics package is used in 
 R. Wehrens et al., Metabolomics 12, 1-12, 2016.
 
+Changes in version 0.1.12:
+  - postponed the check for zero variance in the columns of a data
+    matrix in function evaluatePCA to after the imputation of the
+    missing values with the column mean. In cases with only one non-NA
+    number this would lead to a crash in PCA(scale(Xsample)) because a
+    division by zero.
+
 Changes in version 0.1.11:
   - added this NEWS file
   - using chcr from the package with the same name for tobit
