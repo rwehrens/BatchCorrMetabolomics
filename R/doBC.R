@@ -2,7 +2,8 @@ doBC <- function(Xvec, ref.idx, batch.idx, seq.idx,
                  result = c("correctedX", "corrections"),
                  method = c("lm", "rlm", "tobit"),
                  correctionFormula = formula("X ~ S * B"),
-                 minBsamp = 4, imputeVal = NULL, ...) {
+                 minBsamp = ifelse(is.null(seq.idx, 2, 4)),
+                 imputeVal = NULL, ...) {
   result <- match.arg(result)
   method <- match.arg(method)
 
@@ -27,6 +28,15 @@ doBC <- function(Xvec, ref.idx, batch.idx, seq.idx,
   
   glMean <- mean(Xref, na.rm = TRUE)
 
+  ## check that at least minBsamp samples per batch are present
+  ## if less than minBsamp samples present, remove batch for correction by
+  ## setting values to NA. 
+  nNonNA <- tapply(Xref, Bref, function(x) sum(!is.na(x)))
+  tooFew <- names(nNonNA)[nNonNA < minBsamp]
+  ## no batch found with enough samples...
+  if (length(tooFew) > length(levels(Bref))-2)
+    return(rep(NA, length(Xvec)))
+  
   if (is.null(seq.idx)) {
     if (!is.null(imputeVal))
       Xref[is.na(Xref)] <- imputeVal
@@ -38,16 +48,6 @@ doBC <- function(Xvec, ref.idx, batch.idx, seq.idx,
            correctedX = Xvec + Bcorrections,
            Bcorrections)
   } else {
-    ## check that at least minBsamp samples per batch are present
-    ## if less than minBsamp samples present, remove batch for correction by
-    ## setting values to NA. 
-    nNonNA <- tapply(Xref, Bref, function(x) sum(!is.na(x)))
-    tooFew <- names(nNonNA)[nNonNA < minBsamp]
-    ## no batch found with enough samples...
-    if (length(tooFew) > length(levels(Bref))-2)
-      return(rep(NA, length(Xvec)))
-
-
     ## finally plug in imputeVal for non-detects
     if (!is.null(imputeVal))
       Xref[is.na(Xref)] <- imputeVal
