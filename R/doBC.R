@@ -2,7 +2,7 @@ doBC <- function(Xvec, ref.idx, batch.idx, seq.idx,
                  result = c("correctedX", "corrections"),
                  method = c("lm", "rlm", "tobit"),
                  correctionFormula = formula("X ~ S * B"),
-                 minBsamp = ifelse(is.null(seq.idx, 2, 4)),
+                 minBsamp = ifelse(is.null(seq.idx), 2, 4),
                  imputeVal = NULL, ...) {
   result <- match.arg(result)
   method <- match.arg(method)
