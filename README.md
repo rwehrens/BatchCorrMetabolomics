@@ -1,4 +1,6 @@
-# BatchCorrMetabolomics
+# BatchCorrMetabolomics [![Travis build status](https://travis-ci.org/rwehrens/BatchCorrMetabolomics.svg?branch=master)](https://travis-ci.org/rwehrens/BatchCorrMetabolomics)
+
+
 Supplementary material for the paper "Improved batch correction in
 untargeted MS-based metabolomics" by R. Wehrens, et al. Metabolomics,
 12:1-12 (2016).
